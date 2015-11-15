@@ -30,7 +30,7 @@ describe('Hamming', function () {
     expect(compute('GGACGGATTCTG', 'AGGACGGATTCT')).toEqual(9);
   });
 
-  xit('throws error when strands are not equal length', function() {
+  it('throws error when strands are not equal length', function() {
     expect(function() { compute('GGACGGATTCTG', 'AGGAC'); }).toThrow(
       new Error('DNA strands must be of equal length.')
     );
