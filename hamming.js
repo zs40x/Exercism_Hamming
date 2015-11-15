@@ -1,16 +1,16 @@
-var computeHamming = function(a, b) {
+var computeHammingDistance = function(s, t) {
 	
 	var hammingDistance = 0;
 	
-	if(a.length != b.length)
+	if(s.length != t.length)
 		throw new Error("DNA strands must be of equal length.");
 	
-	for(var i = 0; i <= a.length; i++) {
-		if(a[i] != b[i])
+	for(var i = 0; i <= s.length; i++) {
+		if(s[i] != t[i])
 			hammingDistance++;
 	}
 	
 	return hammingDistance;
 }
 
-module.exports = computeHamming;
+module.exports = computeHammingDistance;
