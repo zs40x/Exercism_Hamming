@@ -2,28 +2,22 @@ var computeHammingDistance = function(s, t) {
 		
 	if(areStrandLengthsNotEqual(s,t))
 		throw new Error("DNA strands must be of equal length.");
-	
-	return forStrands(s, t, incrementIfMutation);
+
+	return checkStrandsPosition(s, t, 0, 0);
 }
 
 function areStrandLengthsNotEqual(s, t) {
 	return (s.length != t.length) ? true : false;
 }
 
-function forStrands(s, t, increment) {
-	var hammingDistance = 0;
-	
-	for(var i = 0; i <= s.length; i++ ) {
-		hammingDistance += increment(s, t, i);
-	}
-	
-	return hammingDistance;
+function checkStrandsPosition(s, t, i, hammingDist) {
+	return (i == s.length) 
+		? hammingDist 
+		: checkStrandsPosition(s, t, i + 1, incrementIfMutation(s,t,i,hammingDist))
 }
 	
-function incrementIfMutation(s, t, i) {
-	if(s[i] != t[i])
-		return 1;
-	return 0;
+function incrementIfMutation(s, t, i, hammingDist) {
+	return (s[i] != t[i]) ? ++hammingDist : hammingDist;
 }
 
 module.exports = computeHammingDistance;
